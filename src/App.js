@@ -1,72 +1,30 @@
 import {React, useState} from 'react';
 import './App.css';
+import {Form} from './Form'
 
-/* 
-const userComponent=() => {
-  const formik = useFormik ({
-    user: {
-      nombre:'',
-      apellido:'',
-      apodo:''
-    },
-    onSubmit:values=>{
-      const etiqueta = (JSON.stringify(values))
-    }
-  })
-}
- */
 function App() {
 
   const [nombreInput, setNombreInput] = useState("");
   const [apellidoInput, setApellidoInput] = useState("");
   const [apodoInput, setApodoInput] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [printData, setPrintData] = useState(false);
 
   const user = {
     nombre:{nombreInput},
     apellido:{apellidoInput},
-    apodo:{apodoInput},
+    apodo:{apodoInput}
   }
 
-  const inputChangeNombre = (event) => {
-    setNombreInput(event.target.value);
-  }
-
-  const inputChangeApellido = (event) => {
-    setApellidoInput(event.target.value);
-  }
-
-  const inputChangeApodo = (event) => {
-    setApodoInput(event.target.value);
-  }
-
-  const validar = () => {
-    if(nombreInput==null || apodoInput==null || apellidoInput==null) {}
-    else()
-  }
-
+  const etiqueta = JSON.stringify(user)
+  
   return (
      <>
-      <form action="/form" method="post">
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" value={nombreInput} onChange={inputChangeNombre}/>
-
-        <label for="apellido">Apellido:</label>
-        <input type="text" value={apellidoInput} onChange={inputChangeApellido}/>
-
-        <label for="apodo">Apodo:</label>
-        <input type="text" value={apodoInput} onChange={inputChangeApodo}/>
-
-        <button type="reset" >Limpiar</button>
-
-        <button disabled={disabled}> Enviar </button>
-
-
-      </form>
-
-      
-      const etiqueta = JSON.stringify(user);
-
+      <Form 
+        setNombreInput={setNombreInput} setApellidoInput={setApellidoInput} setApodoInput={setApodoInput} setPrintData={setPrintData} printData={printData}
+        isDisabled={isDisabled} nombreInput={nombreInput} apellidoInput={apellidoInput} apodoInput={apodoInput} setIsDisabled={setIsDisabled} user={user} etiqueta={etiqueta}>
+      </Form>
         
      </>
   );
