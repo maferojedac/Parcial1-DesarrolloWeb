@@ -19,17 +19,20 @@ export const Form = ({setNombreInput,setApellidoInput,setApodoInput,setIsDisable
         setNombreInput("");
         setApellidoInput("");
         setApodoInput("");
+        setPrintData(false)
       }
 
+      if(nombreInput != "" && apellidoInput !="" && apodoInput !="") {setIsDisabled(true)}
 
-      const validar = () => {
-        if(nombreInput != "" && apellidoInput !="" && apodoInput !="") {setIsDisabled(true)}
-        if(setIsDisabled(true)) {<h5>{etiqueta}</h5>}
+      const validar = (event) => {
+        event.preventDefault();
+        setPrintData(true);
       }
 
   return (
-    <form>
+    <form className="form" onSubmit={validar}>
 
+      <div className="label">
         <label>Nombre:</label>
         <input type="text" value={nombreInput} onChange={inputChangeNombre}/>
 
@@ -38,9 +41,16 @@ export const Form = ({setNombreInput,setApellidoInput,setApodoInput,setIsDisable
 
         <label>Apodo:</label>
         <input type="text" value={apodoInput} onChange={inputChangeApodo}/>
+      </div>
 
+      <div className="clear">
         <button onClick={borrar} type="button">Limpiar</button>
-        <button onClick={validar} type="submit" disabled={!isDisabled}> Enviar </button>
+      </div>
+
+      <div className="sent">
+        <button type="submit" disabled={!isDisabled}> Enviar </button>
+      </div>
+        
     </form>
   )
 }
